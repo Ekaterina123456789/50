@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cладость в радость</title>
+    <link rel="icon" type="image/x-icon"  href="{% static 'skills/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="menu">
+    <div class="wrap">
+        <div class="logo">
+            <a href="{% url 'works' %}">
+                <img src="{% static 'skills/logo.png' %}" height="100px" alt="logo">
+            </a>
+        </div>
+        <ul>
+            <li><a href="{% url 'works' %}">Главная</a></li>
+            <li><a href="{% url 'add_work' %}">Добавить работу</a></li>
+            <li><a href="{% static 'skills/diploma.jpg' %}" target="_blank">Дипломы</a></li>
+            <p><br>
+                http://vk.com/id260077149 <br>
+                тел.: +79031379999</p>
+        </ul>
+    </div>
+</div>
+    <div class="content">
+        <div class="wrap">
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
