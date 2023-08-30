@@ -8,7 +8,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+{% if user.is_authenticated %}
 <div class="menu">
+    <div class="contacts">
+    <p>
+        http://vk.com/id260077149 <br>
+        тел.: +79031379999</p>
+</div>
     <div class="wrap">
         <div class="logo">
             <a href="{% url 'works' %}">
@@ -19,18 +25,46 @@
             <li><a href="{% url 'works' %}">Главная</a></li>
             <li><a href="{% url 'add_work' %}">Добавить работу</a></li>
             <li><a href="{% static 'skills/diploma.jpg' %}" target="_blank">Дипломы</a></li>
-            <p><br>
-                http://vk.com/id260077149 <br>
-                тел.: +79031379999</p>
+            <li><a href="{% url 'signupuser' %}">Зарегистрироваться</a></li>
+            <li><a href="{% url 'loginuser' %}">Войти</a></li>
+            <li>
+                <form action="{% url 'logoutuser' %}" method="post">
+                    {% csrf_token %}
+                    <button class="top">Выйти</button>
+                </form>
+            </li>
         </ul>
     </div>
 </div>
-    <div class="content">
-        <div class="wrap">
-            {% block content %}
-
-            {% endblock %}
+{% else %}
+<div class="menu">
+    <div class="wrap">
+        <div class="logo">
+            <a href="{% url 'works' %}">
+                <img src="{% static 'skills/logo.png' %}" height="100px" alt="logo">
+            </a>
         </div>
+        <ul>
+            <li class="logo">
+                <a href="{% url 'works' %}">UpService</a></li>
+            <li><a href="{% url 'signupuser' %}">Зарегистрироваться</a></li>
+            <li><a href="{% url 'loginuser' %}">Войти</a></li>
+        </ul>
     </div>
+    <div class="contacts">
+        <p>
+            http://vk.com/id260077149 <br>
+            тел.: +79031379999</p>
+    </div>
+</div>
+{% endif %}
+<div class="content">
+    <div class="wrap">
+        <h4>{{ error }}</h4>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</div>
 </body>
 </html>

@@ -1,16 +1,35 @@
 {% extends 'userpage/base.html' %}
-
+{% load static %}
 {% block content %}
-<h1>Мои работы</h1>
+<h1>Зефир, пряники и торты на заказ</h1>
 <h2 class="count">Работ: {{ works.count }}</h2>
-{% for work in works %}
+{% for work in portfolio %}
     <div class="element">
         <h2 class="top">
             <h3>{{ work.title }}</h3>
-            <h4>-- {{ work.date  | date:'d.m.Y' }} --</h4>
             <img src="{{ work.picture }}" alt="{{ work.title }}">
             <p>{{ work.description | safe }}</p>
         </h2>
-</div>
+    </div>
 {% endfor %}
+<div class="block">
+    <div class="element">
+        <img src="{% static 'skills/001.jpg' %}" alt="">
+    </div>
+    <div class="element">
+        <img src="{% static 'skills/002.jpg' %}" alt="">
+    </div>
+    <div class="element">
+        <img src="{% static 'skills/003.jpg' %}" alt="">
+    </div>
+    <div class="element">
+        <img src="{% static 'skills/004.jpg' %}" alt="">
+    </div>
+    <div class="element">
+        <img src="{% static 'skills/005.jpg' %}" alt="">
+    </div>
+    <div class="element">
+        <img src="{% static 'skills/006.jpg' %}" alt="">
+    </div>
+</div>
 {% endblock %}

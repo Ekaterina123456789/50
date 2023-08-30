@@ -1,0 +1,35 @@
+{% extends 'userpage/base.html' %}
+
+{% block content %}
+<h2>{{ error }}</h2>
+<h1>{{ works.title }}</h1>
+
+<ul>
+    {% for work in catalog %}
+    <li>
+        <a href="{% url 'viewelement' work.id %}">
+            {% if work.important %}
+            <p>Мои любимые работы:</p>
+            <b>{{ work.title }}</b>
+            <img src="{{ work.picture }}" alt="{{ work.title }}">
+
+            {% else %}
+            {{ work.title }}
+            {% endif %}
+        </a>
+
+        <p>{{ work.date_completed | date:'M j Y H:i' }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<p>Мои любимые работы:</p>
+<div class="but">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn">Сохранить</button>
+    </form>
+</div>
+
+{% endblock %}
